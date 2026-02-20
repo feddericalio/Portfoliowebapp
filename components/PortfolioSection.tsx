@@ -12,14 +12,34 @@ const PortfolioSection: React.FC = () => {
   const [items, setItems] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const DEFAULT_ITEMS = [
+    {
+      id: "1",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL2bd5ONoJocQhUGCafULHLNRz_RWQhkPJRQ&s",
+      link: "https://www.facebook.com/LCMobiliLionetto/photos/d41d8cd9/1352057459946831/",
+      title: "Social Media Design"
+    },
+    {
+      id: "2",
+      image: "https://www.lcmobili.it/wp-content/uploads/2026/01/Grigio-Moderno-Divano-Annuncio-Post-Instagram.png",
+      link: "https://www.lcmobili.it/",
+      title: "Web & Ad Strategy"
+    }
+  ];
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
         const res = await fetch('/api/portfolio');
-        const data = await res.json();
-        setItems(data);
+        if (res.ok) {
+          const data = await res.json();
+          setItems(data);
+        } else {
+          setItems(DEFAULT_ITEMS);
+        }
       } catch (err) {
         console.error('Error fetching portfolio:', err);
+        setItems(DEFAULT_ITEMS);
       } finally {
         setLoading(false);
       }

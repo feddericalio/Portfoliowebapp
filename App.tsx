@@ -17,6 +17,63 @@ const App: React.FC = () => {
   const [adminPassword, setAdminPassword] = useState('');
   const [siteContent, setSiteContent] = useState<any>(null);
 
+  const DEFAULT_CONTENT = {
+    theme: {
+      fontSerif: "Playfair Display",
+      fontSans: "Plus Jakarta Sans",
+      primaryColor: "#0f172a",
+      backgroundColor: "#f8fafc",
+      textColor: "#334155",
+      accentColor: "#64748b",
+      profileImage: "https://media.licdn.com/dms/image/v2/D4D03AQEZDyn4O1WruQ/profile-displayphoto-scale_200_200/B4DZpa38mmJIAc-/0/1762461212551?e=2147483647&v=beta&t=QR9zHl5Ro2dDhtJv8ngO_aV38RtY5271i3UdB0TxtFk"
+    },
+    hero: {
+      badge: "Comunicazione & Marketing Strategico",
+      name: "Federica Lionetto",
+      quote: "\"La comunicazione non è un dettaglio. È ciò che determina il risultato.\"",
+      aiText: "Non hai voglia di leggere tutti i miei dati? Chiedi alla mia assistente AI, che ho creato e addestrato per rispondere a tutte le tue domande su di me."
+    },
+    about: {
+      title: "Comprendere le persone significa comprendere il mercato.",
+      p1: "Marketing e psicologia non sono strumenti separati, ma parti di uno stesso processo: analizzare, ascoltare, interpretare e costruire strategie che non siano solo efficaci, ma autentiche.",
+      p2: "Crescere in un'azienda familiare mi ha insegnato che i problemi non sono limiti, ma processi da comprendere. Oggi affronto ogni sfida con metodo, calma e una profonda propensione al problem solving rapido."
+    },
+    experiences: [
+      {
+        company: "LC Mobili",
+        role: "Gestione Comunicazione & Marketing",
+        period: "2019-2026",
+        description: "Responsabile della comunicazione integrata: gestione e aggiornamento del sito web, definizione di strategie marketing sui social media, creazione di contenuti grafici e video. Coordinamento di collaborazioni con radio e TV locali. Gestione del rapporto diretto con il cliente e sviluppo di problem solving rapido in contesti operativi."
+      }
+    ],
+    education: [
+      {
+        institution: "Università degli Studi di Milano",
+        degree: "Laurea in comunicazione e società",
+        period: "2021-2024",
+        description: "Focus su materie sociologiche, diritto, marketing, studio di radio e tv, per un approccio alla comunicazione a 360°. Esperienza Erasmus come pilastro di apertura mentale."
+      }
+    ],
+    languages: [
+      {
+        language: "Italiano",
+        level: "Madrelingua",
+        description: "Lingua principale utilizzata in ambito professionale e accademico."
+      }
+    ],
+    skills: [
+      { name: "Comunicazione Strategica", category: "professional" },
+      { name: "Problem Solving", category: "interpersonal" }
+    ],
+    manifesto: {
+      title: "Manifesto Professionale",
+      p1: "Sono cresciuta all’interno di un’azienda familiare, un contesto che mette alla prova equilibrio e lucidità.",
+      p2: "La svolta è arrivata con l’università e l’esperienza Erasmus.",
+      p3: "L'esperienza in Yam Lab ha consolidato la mia professionalità.",
+      p4: "Oggi cerco sfide che richiedano non solo competenza tecnica, ma una visione umana e strategica del business."
+    }
+  };
+
   useEffect(() => {
     fetchSiteContent();
     window.addEventListener('site-content-updated', fetchSiteContent);
@@ -29,9 +86,14 @@ const App: React.FC = () => {
       if (res.ok) {
         const data = await res.json();
         setSiteContent(data);
+      } else {
+        // Fallback to default content if API fails
+        setSiteContent(DEFAULT_CONTENT);
       }
     } catch (err) {
       console.error('Error fetching site content:', err);
+      // Fallback to default content if API is unreachable
+      setSiteContent(DEFAULT_CONTENT);
     }
   };
 

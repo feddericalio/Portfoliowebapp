@@ -120,7 +120,7 @@ const App: React.FC = () => {
       p1: "Sono cresciuta all’interno di un’azienda familiare, un contesto che mette alla prova equilibrio e lucidità. Lì ho imparato a gestire crisi e a separare il piano personale da quello professionale.",
       p2: "La svolta è arrivata con l’università e l’esperienza Erasmus: il confronto, il dibattito, l’ascolto. Ho capito che le idee migliori nascono quando si è disposti a mettersi in discussione e a uscire dalla propria zona di comfort.",
       p3: "L'esperienza in Yam Lab ha consolidato la mia professionalità e adattabilità in ambienti creativi e dinamici. Le difficoltà non mi hanno frenata: mi hanno strutturata.",
-      p4": "Oggi cerco sfide che richiedano non solo competenza tecnica, ma una visione umana e strategica del business."
+      "p4": "Oggi cerco sfide che richiedano non solo competenza tecnica, ma una visione umana e strategica del business."
     }
   };
 

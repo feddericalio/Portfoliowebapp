@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Copy 1 of Federica Lionetto | Portfolio",
+  "description": "Professional portfolio and AI-powered profile for Federica Lionetto, specializing in Communication, Marketing, and Applied Psychology. Featuring dynamic AI interaction based on her professional experience.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

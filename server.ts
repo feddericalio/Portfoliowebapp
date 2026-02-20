@@ -225,14 +225,20 @@ async function setupVite() {
     app.use(vite.middlewares);
   } else {
     app.use(express.static("dist"));
-    app.get("*", (req, res) => {
-      res.sendFile(path.join(process.cwd(), "dist", "index.html"));
-    });
+    // Don't use wildcard here if we want Vercel to handle routing
+    // app.get("*", (req, res) => {
+    //   res.sendFile(path.join(process.cwd(), "dist", "index.html"));
+    // });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
+  // Only listen if not running as a serverless function
+  if (process.env.NODE_ENV !== "production" || !process.env.VERCEL) {
+    app.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  }
 }
 
 setupVite();
+
+export default app;
